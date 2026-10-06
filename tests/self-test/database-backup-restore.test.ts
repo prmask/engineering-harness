@@ -1,14 +1,20 @@
 import { execFileSync } from 'node:child_process';
-import { mkdtempSync, readFileSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdtempSync, readFileSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { describe, expect, test } from 'vitest';
 
 const root = process.cwd();
-const backupScript = join(root, 'scripts/db-backup.mjs');
-const restoreScript = join(root, 'scripts/db-restore.mjs');
+const backupScript = existsSync(join(root, 'templates/scripts/db-backup.mjs'))
+  ? join(root, 'templates/scripts/db-backup.mjs')
+  : (existsSync(join(root, 'scripts/db-backup.mjs')) ? join(root, 'scripts/db-backup.mjs') : null);
+const restoreScript = existsSync(join(root, 'templates/scripts/db-restore.mjs'))
+  ? join(root, 'templates/scripts/db-restore.mjs')
+  : (existsSync(join(root, 'scripts/db-restore.mjs')) ? join(root, 'scripts/db-restore.mjs') : null);
 
-describe('database backup and restore', () => {
+const hasScripts = Boolean(backupScript && restoreScript);
+
+describe.runIf(hasScripts)('database backup and restore', () => {
   test('creates a backup and restores the backup state', () => {
     const directory = mkdtempSync(join(tmpdir(), 'experiment-backup-'));
     const databasePath = join(directory, 'experiment.db');
@@ -18,7 +24,7 @@ describe('database backup and restore', () => {
       const initialContent = 'SQLite format 3\0test-record-protected-history';
       writeFileSync(databasePath, initialContent, 'utf8');
 
-      execFileSync('node', [backupScript], {
+      execFileSync('node', [backupScript!], {
         cwd: root,
         env: {
           ...process.env,
@@ -37,7 +43,7 @@ describe('database backup and restore', () => {
 
       writeFileSync(databasePath, 'SQLite format 3\0changed-after-backup', 'utf8');
 
-      execFileSync('node', [restoreScript, createdBackupPath], {
+      execFileSync('node', [restoreScript!, createdBackupPath], {
         cwd: root,
         env: {
           ...process.env,

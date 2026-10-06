@@ -47,7 +47,11 @@ const itemsToCopy = [
   'templates',
   'tests',
   'README.md',
-  'setup-root-shims.mjs'
+  'setup-root-shims.mjs',
+  'export-harness.mjs',
+  'package.json',
+  'tsconfig.json',
+  'vitest.config.ts'
 ];
 
 for (const item of itemsToCopy) {

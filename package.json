@@ -1,0 +1,26 @@
+{
+  "name": "engineering-harness",
+  "version": "2.0.0",
+  "description": "A modular, project-agnostic engineering framework for AI-assisted software development.",
+  "type": "module",
+  "packageManager": "pnpm@12.9.1",
+  "author": "prmask",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/prmask/engineering-harness.git"
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit",
+    "verify": "node core/verification/verify.mjs",
+    "shims": "node setup-root-shims.mjs",
+    "export": "node export-harness.mjs"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.10",
+    "typescript": "^5.8.2",
+    "vitest": "^3.0.8"
+  }
+}
