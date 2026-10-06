@@ -14,10 +14,18 @@ function runHook(repo: string, env?: Partial<NodeJS.ProcessEnv>) {
     const output = execFileSync(getBashPath(), [hook], {
       cwd: repo,
       encoding: 'utf8',
-      env: {
-        ...process.env,
-        ...env,
-      },
+      env: (() => {
+        const childEnv = {
+          ...process.env,
+          ...env,
+        };
+
+        if (env?.MISSING_TEST_APPROVED === undefined) {
+          delete childEnv.MISSING_TEST_APPROVED;
+        }
+
+        return childEnv;
+      })(),
       stdio: ['ignore', 'pipe', 'pipe'],
     });
 

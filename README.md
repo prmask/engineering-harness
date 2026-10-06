@@ -1,5 +1,7 @@
 # AI Engineering Harness (v2)
 
+[![CI](https://github.com/prmask/engineering-harness/actions/workflows/ci.yml/badge.svg)](https://github.com/prmask/engineering-harness/actions/workflows/ci.yml)
+
 A modular, project-agnostic engineering framework for AI-assisted software development.
 
 ## 1. Directory Structure
