@@ -78,8 +78,7 @@ const junctions = [
 for (const { name, link, target } of junctions) {
   const legacyDir = path.join(agentsDir, `${name}.legacy`);
 
-  if (fs.existsSync(link)) {
-    // Check if it's already a junction or directory
+  try {
     const stats = fs.lstatSync(link);
     if (!stats.isSymbolicLink() && stats.isDirectory()) {
       if (!fs.existsSync(legacyDir)) {
@@ -91,6 +90,11 @@ for (const { name, link, target } of junctions) {
     } else {
       fs.rmSync(link, { recursive: true, force: true });
     }
+  } catch {
+    // Link does not exist or is a broken junction/reparse point
+    try {
+      fs.rmSync(link, { recursive: true, force: true });
+    } catch {}
   }
 
   try {
