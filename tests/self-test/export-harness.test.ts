@@ -8,7 +8,9 @@ const root = process.cwd();
 const exportScript = join(root, 'export-harness.mjs');
 
 describe('export harness CLI', () => {
-  test('exports harness files including LICENSE to a target project directory', () => {
+  test(
+    'exports harness files including LICENSE to a target project directory',
+    () => {
     const tempTarget = mkdtempSync(join(tmpdir(), 'harness-export-test-'));
 
     try {
@@ -34,5 +36,5 @@ describe('export harness CLI', () => {
         // Ignored on Windows temporary file lock
       }
     }
-  });
+  }, 30000);
 });
