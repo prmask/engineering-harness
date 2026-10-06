@@ -83,3 +83,24 @@ Run `node engineering-harness/setup-root-shims.mjs` (or `node setup-root-shims.m
 4. **Data Integrity:** Missing data is never zero (`NULL ≠ 0`). Never silently overwrite records.
 5. **Observation vs Interpretation:** Clearly distinguish factual metrics from explanatory hypotheses.
 6. **No Fabricated Success:** Claims that tests or builds pass require actual command execution.
+
+## 4. Exporting to New Projects
+
+Because the framework is **100% project-agnostic**, you can install it into any target repository in seconds:
+
+### Method A: One-Command Local Export
+From this harness directory, run:
+```bash
+node export-harness.mjs <path-to-target-project>
+```
+*Example:* `node export-harness.mjs ../my-new-app`
+
+This automatically copies the harness framework and executes root shimming in the target project.
+
+### Method B: From GitHub
+In any project repository root, clone and shim:
+```bash
+git clone https://github.com/prmask/engineering-harness.git engineering-harness
+node engineering-harness/setup-root-shims.mjs
+```
+The target project immediately gains all 10 specialist personas, 13 skills, 9 workflows, pre-commit security guardrails, and Claude Code hooks with zero manual configuration.
