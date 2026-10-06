@@ -1,0 +1,15 @@
+# Dependencies
+node_modules/
+
+# Local IDE and Agent Shims (re-created via node setup-root-shims.mjs)
+.agents/
+
+# Build and cache
+.next/
+dist/
+build/
+*.tsbuildinfo
+
+# OS metadata
+.DS_Store
+Thumbs.db

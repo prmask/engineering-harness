@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+ROOT="$(git rev-parse --show-toplevel)"
+if [[ -f "$ROOT/engineering-harness/hooks/pre-commit.sh" ]]; then
+  exec "$ROOT/engineering-harness/hooks/pre-commit.sh"
+else
+  exec "$ROOT/hooks/pre-commit.sh"
+fi
