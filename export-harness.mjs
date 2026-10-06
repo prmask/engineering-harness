@@ -46,6 +46,7 @@ const itemsToCopy = [
   'skills',
   'templates',
   'tests',
+  'LICENSE',
   'README.md',
   'setup-root-shims.mjs',
   'export-harness.mjs',

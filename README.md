@@ -1,6 +1,7 @@
 # AI Engineering Harness (v2)
 
 [![CI](https://github.com/prmask/engineering-harness/actions/workflows/ci.yml/badge.svg)](https://github.com/prmask/engineering-harness/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 A modular, project-agnostic engineering framework for AI-assisted software development.
 
@@ -106,3 +107,7 @@ git clone https://github.com/prmask/engineering-harness.git engineering-harness
 node engineering-harness/setup-root-shims.mjs
 ```
 The target project immediately gains all 10 specialist personas, 13 skills, 9 workflows, pre-commit security guardrails, and Claude Code hooks with zero manual configuration.
+
+## 5. License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
